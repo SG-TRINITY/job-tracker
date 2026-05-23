@@ -84,11 +84,11 @@ export default function AddJobModal({ job, onSubmit, onClose }: Props) {
 
           <div className="grid grid-cols-2 gap-4">
             <Field label="Applied Date *" error={errors.applied_date}>
-              <input type="date" value={form.applied_date ?? ''} onChange={set('applied_date')}
+              <input type="date" aria-label="Applied date" value={form.applied_date ?? ''} onChange={set('applied_date')}
                 className={inputCls(errors.applied_date)} />
             </Field>
             <Field label="Status">
-              <select value={form.status ?? 'Applied'} onChange={set('status')} className={inputCls()}>
+              <select aria-label="Status" value={form.status ?? 'Applied'} onChange={set('status')} className={inputCls()}>
                 {STATUSES.map(s => <option key={s}>{s}</option>)}
               </select>
             </Field>
@@ -135,8 +135,10 @@ export default function AddJobModal({ job, onSubmit, onClose }: Props) {
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-gray-600 mb-1">{label}</label>
-      {children}
+      <label className="block">
+        <span className="block text-xs font-medium text-gray-600 mb-1">{label}</span>
+        {children}
+      </label>
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );

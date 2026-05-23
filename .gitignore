@@ -13,5 +13,8 @@ jobs.db
 .env.local
 .env*.local
 
+# TypeScript
+*.tsbuildinfo
+
 # misc
 .DS_Store
