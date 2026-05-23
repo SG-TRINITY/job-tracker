@@ -1,6 +1,6 @@
-import React from 'react';
+import type { Job } from '@/types';
 
-const STATUS_STYLES = {
+const STATUS_STYLES: Record<string, string> = {
   Applied:      'bg-blue-100 text-blue-700',
   Interviewing: 'bg-yellow-100 text-yellow-700',
   Offer:        'bg-green-100 text-green-700',
@@ -9,15 +9,21 @@ const STATUS_STYLES = {
   Withdrawn:    'bg-gray-100 text-gray-600',
 };
 
-function StatusBadge({ status }) {
+function StatusBadge({ status }: { status: string }) {
   return (
-    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[status] || 'bg-gray-100 text-gray-600'}`}>
+    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[status] ?? 'bg-gray-100 text-gray-600'}`}>
       {status}
     </span>
   );
 }
 
-export default function JobTable({ jobs, selectedJobId, onSelectJob }) {
+interface Props {
+  jobs: Job[];
+  selectedJobId?: number;
+  onSelectJob: (job: Job) => void;
+}
+
+export default function JobTable({ jobs, selectedJobId, onSelectJob }: Props) {
   if (jobs.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 text-gray-400">
@@ -54,7 +60,7 @@ export default function JobTable({ jobs, selectedJobId, onSelectJob }) {
             >
               <td className="px-5 py-3.5 font-medium text-gray-900">{job.title}</td>
               <td className="px-5 py-3.5 text-gray-700">{job.company}</td>
-              <td className="px-5 py-3.5 text-gray-500">{job.location || '—'}</td>
+              <td className="px-5 py-3.5 text-gray-500">{job.location ?? '—'}</td>
               <td className="px-5 py-3.5 text-gray-500">{job.applied_date}</td>
               <td className="px-5 py-3.5"><StatusBadge status={job.status} /></td>
             </tr>

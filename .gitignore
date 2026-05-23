@@ -1,3 +1,17 @@
+# dependencies
 node_modules/
-backend/jobs.json
+
+# Next.js
+.next/
+out/
+
+# database
+jobs.db
+
+# env
 .env
+.env.local
+.env*.local
+
+# misc
+.DS_Store
