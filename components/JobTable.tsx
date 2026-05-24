@@ -1,4 +1,4 @@
-import type { Job } from '@/types';
+ import type { Job } from '@/types';
 
 const STATUS_STYLES: Record<string, string> = {
   Applied:      'bg-blue-100 text-blue-700',
