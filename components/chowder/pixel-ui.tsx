@@ -56,14 +56,15 @@ export function StatusPill({ statusId, large = false }: StatusPillProps) {
 }
 
 // ── PixelCheck ────────────────────────────────────────────────────────────────
-interface PixelCheckProps { checked: boolean; onClick?: () => void; }
+interface PixelCheckProps { checked: boolean; onClick?: () => void; label?: string; }
 
-export function PixelCheck({ checked, onClick }: PixelCheckProps) {
+export function PixelCheck({ checked, onClick, label = 'Select' }: PixelCheckProps) {
   return (
     <span
       className="px-check"
       role="checkbox"
-      aria-checked={checked}
+      aria-checked={checked ? 'true' : 'false'}
+      aria-label={label}
       tabIndex={0}
       data-on={checked ? '1' : '0'}
       onClick={(e) => { e.stopPropagation(); onClick?.(); }}
@@ -136,7 +137,7 @@ export function fmtDateFull(iso: string) {
 export function daysAgo(iso: string) {
   if (!iso) return '';
   const d = new Date(iso + 'T12:00:00');
-  const now = new Date('2026-05-21T12:00:00');
+  const now = new Date();
   const diff = Math.round((now.getTime() - d.getTime()) / 86400000);
   if (diff === 0) return 'today';
   if (diff === 1) return '1 day ago';

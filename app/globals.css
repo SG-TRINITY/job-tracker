@@ -250,8 +250,8 @@ body::after {
     inset 0 0 0 7px var(--border-dark),
     0 4px 0 var(--border-dark),
     0 6px 0 var(--shadow);
-  backdrop-filter: blur(2px) saturate(110%);
   -webkit-backdrop-filter: blur(2px) saturate(110%);
+  backdrop-filter: blur(2px) saturate(110%);
   position: relative;
 }
 .frame-thin {
@@ -261,8 +261,8 @@ body::after {
     inset 0 0 0 2px var(--border-soft),
     0 3px 0 var(--border-dark),
     0 5px 0 var(--shadow);
-  backdrop-filter: blur(2px) saturate(110%);
   -webkit-backdrop-filter: blur(2px) saturate(110%);
+  backdrop-filter: blur(2px) saturate(110%);
 }
 .frame-inset {
   background: var(--surface-2);

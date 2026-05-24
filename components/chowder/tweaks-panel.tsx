@@ -35,9 +35,9 @@ const STYLE = `
   .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
     background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
   .twk-toggle[data-on="1"]{background:#34c759}
-  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+  .twk-toggle span{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
     background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
-  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+  .twk-toggle[data-on="1"] span{transform:translateX(14px)}
 `;
 
 export function useTweaks<T extends Record<string, unknown>>(defaults: T): [T, (key: keyof T, value: T[keyof T]) => void] {
@@ -103,6 +103,7 @@ export function TweaksPanel({ title = 'Tweaks', children }: TweaksPanelProps) {
     <>
       <style dangerouslySetInnerHTML={{ __html: STYLE }} />
       <button
+        type="button"
         onClick={() => setOpen(o => !o)}
         style={{
           position: 'fixed', bottom: 16, right: open ? 312 : 16,
@@ -147,7 +148,7 @@ interface TweakSelectProps { label: string; value: string; options: (string | Tw
 export function TweakSelect({ label, value, options, onChange }: TweakSelectProps) {
   return (
     <TweakRow label={label}>
-      <select className="twk-field" value={value} onChange={e => onChange(e.target.value)}>
+      <select className="twk-field" title={label} value={value} onChange={e => onChange(e.target.value)}>
         {options.map(o => {
           const v = typeof o === 'object' ? o.value : o;
           const l = typeof o === 'object' ? o.label : o;
@@ -164,8 +165,8 @@ export function TweakToggle({ label, value, onChange }: TweakToggleProps) {
     <div className="twk-row twk-row-h">
       <div className="twk-lbl"><span>{label}</span></div>
       <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
-        role="switch" aria-checked={value} onClick={() => onChange(!value)}>
-        <i />
+        role="switch" aria-checked={value ? 'true' : 'false'} aria-label={label} onClick={() => onChange(!value)}>
+        <span aria-hidden="true" />
       </button>
     </div>
   );

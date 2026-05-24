@@ -300,20 +300,20 @@ export function AddJobModal({ initial, onClose, onSave }: AddJobModalProps) {
             <input className="px-input" value={form.salary || ''} onChange={e => set('salary', e.target.value)} placeholder="$150k – $180k" />
           </Field>
           <Field label="Date applied">
-            <input className="px-input" type="date" value={form.appliedAt} onChange={e => set('appliedAt', e.target.value)} />
+            <input className="px-input" type="date" title="Date applied" value={form.appliedAt} onChange={e => set('appliedAt', e.target.value)} />
           </Field>
           <Field label="Status">
-            <select className="px-input" value={form.status} onChange={e => set('status', e.target.value)}>
+            <select className="px-input" title="Status" value={form.status} onChange={e => set('status', e.target.value)}>
               {STATUSES.map(s => <option key={s.id} value={s.id}>{s.icon} {s.label}</option>)}
             </select>
           </Field>
           <Field label="Source">
-            <select className="px-input" value={form.source} onChange={e => set('source', e.target.value)}>
+            <select className="px-input" title="Source" value={form.source} onChange={e => set('source', e.target.value)}>
               {SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </Field>
           <Field label="Resume version">
-            <select className="px-input" value={form.resume} onChange={e => set('resume', e.target.value)}>
+            <select className="px-input" title="Resume version" value={form.resume} onChange={e => set('resume', e.target.value)}>
               {RESUMES.map(r => <option key={r} value={r}>{r}</option>)}
             </select>
           </Field>
@@ -334,10 +334,10 @@ export function AddJobModal({ initial, onClose, onSave }: AddJobModalProps) {
             />
           </Field>
           <Field label="Job description" style={{ gridColumn: '1 / -1' }}>
-            <textarea className="px-input" rows={4} value={form.description} onChange={e => set('description', e.target.value)} style={{ resize: 'vertical', fontFamily: 'var(--font-body)' }} />
+            <textarea className="px-input" rows={4} placeholder="Paste job description..." value={form.description} onChange={e => set('description', e.target.value)} style={{ resize: 'vertical', fontFamily: 'var(--font-body)' }} />
           </Field>
           <Field label="Notes" style={{ gridColumn: '1 / -1' }}>
-            <textarea className="px-input" rows={3} value={form.notes} onChange={e => set('notes', e.target.value)} style={{ resize: 'vertical', fontFamily: 'var(--font-mono)' }} />
+            <textarea className="px-input" rows={3} placeholder="Your notes..." value={form.notes} onChange={e => set('notes', e.target.value)} style={{ resize: 'vertical', fontFamily: 'var(--font-mono)' }} />
           </Field>
         </div>
         <div style={{ padding: '14px 22px', borderTop: '3px solid var(--border-dark)', background: 'var(--surface-2)', display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
